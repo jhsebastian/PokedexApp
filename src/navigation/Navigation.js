@@ -28,7 +28,8 @@ const Navigation = () => {
         options={{
           tabBarLabel: "",
           tabBarIcon: () => renderPokeball(),
-          headerTitle: "Pokedex",
+          headerTitle: "",
+          headerTransparent: true,
         }}
       />
       <Tab.Screen

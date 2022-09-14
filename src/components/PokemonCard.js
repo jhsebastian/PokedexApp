@@ -10,12 +10,19 @@ import React from "react";
 
 export default function PokemonCard({ pokemonDetail }) {
   const goToPokemon = () => {
-    console.log(`Vamos al Pokemon: ${pokemonDetail.name}`);
+    console.log(`Vamos al Pokemon: ${pokemonDetail.id}`);
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={goToPokemon}>
+    <TouchableOpacity
+      key={pokemonDetail.id}
+      style={styles.container}
+      onPress={goToPokemon}
+    >
       <View style={styles.card}>
+        <Text style={styles.number}>
+          #{`${pokemonDetail.order}`.padStart(3, 0)}{" "}
+        </Text>
         <Text style={styles.name}>{pokemonDetail.name}</Text>
         <Image source={{ uri: pokemonDetail.image }} style={styles.image} />
       </View>
@@ -54,4 +61,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textTransform: "uppercase",
   },
+  number: {},
 });
