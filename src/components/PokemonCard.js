@@ -7,11 +7,17 @@ import {
   TouchableOpacity,
 } from "react-native";
 import React from "react";
+import getColorByPokemonType from "../utils/getColorByPokemonType";
+import { capitalize } from "lodash";
 
 export default function PokemonCard({ pokemonDetail }) {
   const goToPokemon = () => {
-    console.log(`Vamos al Pokemon: ${pokemonDetail.id}`);
+    console.log(`Vamos al Pokemon: ${pokemonDetail.name}`);
   };
+
+  const pokemonColor = getColorByPokemonType(pokemonDetail.type);
+
+  const bgStyles = { backgroundColor: pokemonColor, ...styles.card };
 
   return (
     <TouchableOpacity
@@ -19,11 +25,13 @@ export default function PokemonCard({ pokemonDetail }) {
       style={styles.container}
       onPress={goToPokemon}
     >
-      <View style={styles.card}>
-        <Text style={styles.number}>
-          #{`${pokemonDetail.order}`.padStart(3, 0)}{" "}
-        </Text>
-        <Text style={styles.name}>{pokemonDetail.name}</Text>
+      <View style={bgStyles}>
+        <View>
+          <Text style={styles.number}>
+            #{`${pokemonDetail.order}`.padStart(3, 0)}{" "}
+          </Text>
+          <Text style={styles.name}>{capitalize(pokemonDetail.name)}</Text>
+        </View>
         <Image source={{ uri: pokemonDetail.image }} style={styles.image} />
       </View>
     </TouchableOpacity>
@@ -35,20 +43,19 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 130,
     width: "90%",
-    justifyContent: "space-around",
+    justifyContent: "space-between",
     alignItems: "flex-start",
     marginBottom: 30,
     borderRadius: 20,
-    backgroundColor: "#7BC34D",
     color: "white",
     paddingHorizontal: 10,
-    flexDirection: "column",
+    paddingTop: 10,
   },
   image: {
     position: "absolute",
     bottom: -20,
     right: 2,
-    width: 90,
+    width: 100,
     height: 90,
   },
   container: {
@@ -59,7 +66,8 @@ const styles = StyleSheet.create({
   name: {
     color: "white",
     fontWeight: "bold",
-    textTransform: "uppercase",
   },
-  number: {},
+  number: {
+    color: "white",
+  },
 });
