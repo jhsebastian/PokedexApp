@@ -1,10 +1,11 @@
 import React from 'react'
 import { Text } from 'react-native'
 
-const Favorites = () => {
+
+const Pokemon = () => {
   return (
-    <Text>Favorites</Text>
+    <Text>Pokemon</Text>
   )
 }
 
-export default Favorites
+export default Pokemon
